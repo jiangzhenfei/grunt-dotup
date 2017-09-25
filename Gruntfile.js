@@ -36,6 +36,8 @@ module.exports = function(grunt) {
           target_dot_port: "22",
           dot_username: "root",
           dot_password: "k8s@dnt.com.cn.2017",
+          dot_docker_name_version:"kdcos-ui-amd64:1.1.0",
+          dot_image_location:"172.24.4.199:5003"
         },
       },
     },

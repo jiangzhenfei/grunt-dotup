@@ -19,6 +19,8 @@ module.exports = function(grunt) {
         var target_port = options.target_dot_port;
         var username = options.dot_username;
         var password = options.dot_password;
+        var image_location = options.dot_image_location;
+        var docker_name_version = options.dot_docker_name_version;
 
         var exec = require('child_process').exec;
         var client_scp = require('scp2');
@@ -74,7 +76,7 @@ module.exports = function(grunt) {
             dot[target_server_pra] = new Client();
             dot[target_server_pra].on('ready', function () {
                 console.log(target_server_pra + " dot is connected");
-                dot[target_server_pra].exec("./update_ui_from_199.sh;", function (err, stream) {
+                dot[target_server_pra].exec("docker pull " + image_location + "/" + docker_name_version + ";mv /etc/kubernetes/manifests/ui.yaml /etc/kubernetes/;sleep 3s;mv /etc/kubernetes/ui.yaml /etc/kubernetes/manifests/", function (err, stream) {
                     if (err) {
                         console.log('false'+err)
                     }
